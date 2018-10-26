@@ -1,22 +1,4 @@
 from time import sleep
-#from contextlib import closing
-#from urllib.request import urlopen, Request
-#from urllib.parse import urlencode
-
-#url = 'https://hooks.slack.com/services/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'
-#values = {'text' : 'Hey Jake'}
-#data = urlencode(values)
-#data = data.encode("ascii")
-#req = Request(url=url, data=data)
-#req.add_header('Content-type', 'application/json')
-#res = urlopen(req).read()
-
-
-
-#data = urlencode({"text":"hi jake"}).encode()
-#with closing(urlopen(url, data)) as response:
-#    print(response.read().decode())
-
 import json
 import urllib3
 import certifi
