@@ -8,21 +8,21 @@ class Notifier:
 
     def __init__(self):
         self.http = urllib3.PoolManager(1)
-        self.slack_url = ""
+        self.slack_url = self.getUrl()
         self.goal = datetime(2019, 6, 22)
         print("countdown to goal: " + str(self.goal))
         self.sentTo = [datetime.now().date()]
         self.sentTo.pop()
-
+        self.send()
         print(self.sentTo)
 
     def run(self):
         if not datetime.now().date() in self.sentTo and datetime.now().hour == 10:
             self.send()
-            self.sentTo.append(datetime.now().date())
 
     def send(self):
         self.post_to_slack(self.getMessage())
+        self.sentTo.append(datetime.now().date())
 
     def post_to_slack(self, message):
         encoded_data = json.dumps({'text': message}).encode('utf-8')
@@ -32,6 +32,10 @@ class Notifier:
         now = datetime.now()
         delta = (self.goal-now).days
         return "T minus %i days" % delta
+
+    def getUrl(self):
+        with open("url.dat") as u:
+            return u.readline().strip()
 
 if __name__ == '__main__':
     n = Notifier()
