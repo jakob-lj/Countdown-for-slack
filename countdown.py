@@ -12,17 +12,18 @@ class Notifier:
         self.goal = datetime(2019, 6, 22)
         print("countdown to goal: " + str(self.goal))
         self.sentTo = [datetime.now().date()]
-        self.sentTo.pop()
         self.send()
         print(self.sentTo)
 
     def run(self):
         if not datetime.now().date() in self.sentTo and datetime.now().hour == 10:
+            self.log("sent")
+            self.sentTo.append(datetime.now().date())
             self.send()
 
     def send(self):
         self.post_to_slack(self.getMessage())
-        self.sentTo.append(datetime.now().date())
+
 
     def post_to_slack(self, message):
         encoded_data = json.dumps({'text': message}).encode('utf-8')
@@ -36,6 +37,9 @@ class Notifier:
     def getUrl(self):
         with open("url.dat") as u:
             return u.readline().strip()
+
+    def log(self, msg):
+        print(str(datetime.now()) + ": " + str(msg))
 
 if __name__ == '__main__':
     n = Notifier()
