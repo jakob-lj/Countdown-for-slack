@@ -39,7 +39,8 @@ class Notifier:
             return u.readline().strip()
 
     def log(self, msg):
-        print(str(datetime.now()) + ": " + str(msg))
+        #print(str(datetime.now()) + ": " + str(msg))
+        pass
 
 if __name__ == '__main__':
     n = Notifier()
