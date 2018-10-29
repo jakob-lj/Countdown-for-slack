@@ -12,7 +12,7 @@ class Notifier:
         self.goal = datetime(2019, 6, 22)
         print("countdown to goal: " + str(self.goal))
         self.sentTo = [datetime.now().date()]
-        self.send()
+        #self.send()
         print(self.sentTo)
 
     def run(self):
