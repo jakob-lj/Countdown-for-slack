@@ -4,20 +4,22 @@ import urllib3
 import certifi
 from datetime import datetime, timedelta
 
+urllib3.disable_warnings()
+
 class Notifier:
 
     def __init__(self):
         self.http = urllib3.PoolManager(1)
         self.slack_url = self.getUrl()
         self.goal = datetime(2019, 6, 22)
-        print("countdown to goal: " + str(self.goal))
-        self.sentTo = [datetime.now().date()]
+        #print("countdown to goal: " + str(self.goal))
+        #self.sentTo = [datetime.now().date()]
+        self.sentTo = []
         #self.send()
-        print(self.sentTo)
+        #print(self.sentTo)
 
     def run(self):
-        if not datetime.now().date() in self.sentTo and datetime.now().hour == 10:
-            self.log("sent")
+        if not datetime.now().date() in self.sentTo and datetime.now().hour == 13:
             self.sentTo.append(datetime.now().date())
             self.send()
 
@@ -38,9 +40,6 @@ class Notifier:
         with open("url.dat") as u:
             return u.readline().strip()
 
-    def log(self, msg):
-        #print(str(datetime.now()) + ": " + str(msg))
-        pass
 
 if __name__ == '__main__':
     n = Notifier()
