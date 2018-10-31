@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 urllib3.disable_warnings()
 
 class Notifier:
-
     def __init__(self):
         self.http = urllib3.PoolManager(1)
         self.slack_url = self.getUrl()
@@ -19,9 +18,12 @@ class Notifier:
         #print(self.sentTo)
 
     def run(self):
-        if not datetime.now().date() in self.sentTo and datetime.now().hour == 13:
-            self.sentTo.append(datetime.now().date())
+        if not datetime.now().date() in self.sentTo and datetime.now().hour == 11:
             self.send()
+
+    def testRun(self):
+        self.sentTo.append(datetime.now().date())
+        self.send()
 
     def send(self):
         self.post_to_slack(self.getMessage())
@@ -40,9 +42,7 @@ class Notifier:
         with open("url.dat") as u:
             return u.readline().strip()
 
-
-if __name__ == '__main__':
-    n = Notifier()
-    while True:
-        n.run()
-        sleep(60)
+n = Notifier()
+while True:
+    n.run()
+    sleep(60)
