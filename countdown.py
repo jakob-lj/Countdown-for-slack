@@ -26,6 +26,7 @@ class Notifier:
         self.send()
 
     def send(self):
+        self.sentTo.append(datetime.now().date())
         self.post_to_slack(self.getMessage())
 
 
