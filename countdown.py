@@ -36,7 +36,7 @@ class Notifier:
 
     def getMessage(self):
         now = datetime.now()
-        delta = (self.goal-now).days
+        delta = (self.goal-now).days + 1
         return "T minus %i days" % delta
 
     def getUrl(self):
