@@ -10,7 +10,7 @@ class Notifier:
     def __init__(self):
         self.http = urllib3.PoolManager(1)
         self.slack_url = self.getUrl()
-        self.goal = datetime(2019, 6, 22)
+        self.goal = datetime(2019, 6, 18)
         #print("countdown to goal: " + str(self.goal))
         #self.sentTo = [datetime.now().date()]
         self.sentTo = []
