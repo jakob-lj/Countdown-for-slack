@@ -44,8 +44,8 @@ class Notifier:
         with open("url.dat") as u:
             return u.readline().strip()
 
-
-n = Notifier()
-while True:
-    n.run()
-    sleep(60)
+with daemon.DaemonContext():
+    n = Notifier()
+    while True:
+        n.run()
+        sleep(60)
