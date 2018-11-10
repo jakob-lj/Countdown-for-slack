@@ -3,6 +3,7 @@ import json
 import urllib3
 import certifi
 from datetime import datetime, timedelta
+import daemon
 
 urllib3.disable_warnings()
 
@@ -43,7 +44,8 @@ class Notifier:
         with open("url.dat") as u:
             return u.readline().strip()
 
-n = Notifier()
-while True:
-    n.run()
-    sleep(60)
+with daemon.DaemonContext():
+    n = Notifier()
+    while True:
+        n.run()
+        sleep(60)
