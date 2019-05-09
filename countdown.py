@@ -45,7 +45,7 @@ class Notifier:
             return u.readline().strip()
 
 n = Notifier()
-n.run()
+n.send()
 #while True:
 #    n.run()
 #    sleep(60)
