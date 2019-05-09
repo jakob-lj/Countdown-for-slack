@@ -4,7 +4,6 @@ import urllib3
 import certifi
 from datetime import datetime, timedelta
 import daemon
-import os
 
 urllib3.disable_warnings()
 
@@ -42,7 +41,7 @@ class Notifier:
         return "T minus %i days" % delta
 
     def getUrl(self):
-        cwd = os.getcwd()
+        cwd = '/home/jakob'
         f = cwd + '/url.dat'
         with open(f) as u:
             return u.readline().strip()
