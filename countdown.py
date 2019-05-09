@@ -41,9 +41,8 @@ class Notifier:
         return "T minus %i days" % delta
 
     def getUrl(self):
-        cwd = '/home/jakob'
-        f = cwd + '/url.dat'
-        with open(f) as u:
+        
+        with open('url.dat') as u:
             return u.readline().strip()
 
 n = Notifier()
